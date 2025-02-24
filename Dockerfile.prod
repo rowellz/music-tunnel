@@ -1,0 +1,10 @@
+FROM node:19.0.0 AS build
+WORKDIR /slick-portfolio-svelte
+COPY . .
+RUN npm install
+RUN npm run build
+FROM nginx:1.18-alpine AS deploy-static
+WORKDIR /usr/share/nginx/html
+RUN rm -rf ./*
+COPY --from=build /slick-portfolio-svelte/build/ .
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
