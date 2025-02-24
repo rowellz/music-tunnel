@@ -2,7 +2,7 @@ version: '3'
 
 services:
 
-  app:
+  tunnel-app:
     restart: always
     build:
       context: .
@@ -17,7 +17,7 @@ services:
     networks:
       - main
 
-  static-app:
+  tunnel-static-app:
     restart: always
     build:
       context: .
